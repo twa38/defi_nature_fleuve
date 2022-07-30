@@ -7,8 +7,7 @@ class Fleuve_repo{
     // database connection and table name
     private $conn;
     private $table_name = "fleuve";
-	
- 
+
     // constructor with $db as database connection
     public function __construct($db){
         $this->conn = $db;
@@ -18,7 +17,22 @@ class Fleuve_repo{
 	function readAll(){
 	  
 		// select all query
-		$query = "SELECT * FROM " . $this->table_name;
+		$query = "SELECT * FROM " . $this->table_name . " ORDER BY " . $this->colonne;
+	  
+		// prepare query statement
+		$stmt = $this->conn->prepare($query);
+	  
+		// execute query
+		$stmt->execute();
+	  
+		return $stmt;
+	}
+	
+	// read all products ORDER BY
+	function readAllOrderBy($colonne,$ordre){
+	  
+		// select all query
+		$query = "SELECT * FROM " . $this->table_name . " ORDER BY " . $colonne . " " . $ordre;
 	  
 		// prepare query statement
 		$stmt = $this->conn->prepare($query);

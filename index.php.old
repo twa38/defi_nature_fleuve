@@ -24,16 +24,7 @@ $db = $database->getConnection();
 $fleuve_repo = new Fleuve_repo($db);
 
 // query fleuve_repos
-if(isset($_GET['colonne'])==false or $_GET['colonne']=='nom'){
-	$colonne = 'nom';
-	$ordre = 'ASC';
-}
-else{
-	$colonne = $_GET['colonne'];
-	$ordre = 'DESC';
-
-}
-$stmt = $fleuve_repo->readAllOrderBy($colonne,$ordre);
+$stmt = $fleuve_repo->readAll();
 
 ?>
 <header>
@@ -88,12 +79,12 @@ $stmt = $fleuve_repo->readAllOrderBy($colonne,$ordre);
 			<caption id="sectionTableau">Liste des <?php echo $fleuve_repo->nb_fleuves()?> fleuves </caption>
 			<thead>
 				<tr>
-					<th><a href="index.php?colonne=nom#sectionTableau">Nom</a></th>
-					<th><a href="index.php?colonne=longueur#sectionTableau">Longueur</a></th>
-					<th><a href="index.php?colonne=debit#sectionTableau">Débit</a></th>
-					<th><a href="index.php?colonne=altitude#sectionTableau">Altitude source</a></th>
-					<th><a href="index.php?colonne=bassin#sectionTableau">Bassin versant</a></th>
-					<th><a href="index.php?colonne=pastille#sectionTableau">Pastille</a></th>
+					<th>Nom</th>
+					<th>Longueur</th>
+					<th>Débit</th>
+					<th>Altitude source</th>
+					<th>Bassin versant</th>
+					<th>Pastille</th>
 					<th>Description</th>
 				</tr>
 			</thead>
@@ -116,6 +107,20 @@ $stmt = $fleuve_repo->readAllOrderBy($colonne,$ordre);
 					<form method="post" id="delete" action="php/delete_fleuve.php"></form>
 					<button form="modifier" type="submit" name="id" value="<?php echo $row['id']?>">Modifier</button><br />
 					<button form="delete" type="submit" name="id" value="<?php echo $row['id']?>" onClick="return confirmSuppr()">Supprimer</button>
+					
+					
+					<!-- 
+					<form method="post" action="php/dnf_edit.php">
+						
+							<input type="hidden" name="id" value="<?php echo $row['id']?>" />
+							<input type="submit" value="Modifier" />
+					</form>
+					<form method="post" action="php/delete_fleuve.php">
+							<input type="hidden" name="id" value="<?php echo $row['id']?>" />
+							<input type="submit" value="Supprimer" onClick="return confirmSuppr()" />
+						
+					</form>
+					-->
 					</td>
 				</tr>
 				

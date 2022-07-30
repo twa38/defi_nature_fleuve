@@ -24,4 +24,4 @@ if (isset($_POST['valider'])) {
 	$fleuve_repo->update($fleuve,$id);
 }
 
-header('Location: ../index.php');
+header('Location: ../index.php#sectionTableau');

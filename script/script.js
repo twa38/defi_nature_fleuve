@@ -42,9 +42,9 @@ function verifFormulaire()
         return false; 
     }
 	
-	 if (description.value.length > 140)                                  
+	 if (description.value.length > 250)                                  
     { 
-        alert("La description ne doit pas dépasser 140 caractères."); 
+        alert("La description ne doit pas dépasser 250 caractères."); 
 		description.focus();
         return false; 
     }
